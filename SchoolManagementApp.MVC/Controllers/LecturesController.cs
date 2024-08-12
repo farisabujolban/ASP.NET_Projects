@@ -9,87 +9,87 @@ using SchoolManagementApp.MVC.Data;
 
 namespace SchoolManagementApp.MVC.Controllers
 {
-    public class LecturesController : Controller
+    public class LecturersController : Controller
     {
         private readonly SchoolManagementDbContext _context;
 
-        public LecturesController(SchoolManagementDbContext context)
+        public LecturersController(SchoolManagementDbContext context)
         {
             _context = context;
         }
 
-        // GET: Lectures
+        // GET: Lecturers
         public async Task<IActionResult> Index()
         {
-              return _context.Lectures != null ? 
-                          View(await _context.Lectures.ToListAsync()) :
-                          Problem("Entity set 'SchoolManagementDbContext.Lectures'  is null.");
+              return _context.Lecturers != null ? 
+                          View(await _context.Lecturers.ToListAsync()) :
+                          Problem("Entity set 'SchoolManagementDbContext.Lecturers'  is null.");
         }
 
-        // GET: Lectures/Details/5
+        // GET: Lecturers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Lectures == null)
+            if (id == null || _context.Lecturers == null)
             {
                 return NotFound();
             }
 
-            var lecture = await _context.Lectures
+            var Lecturer = await _context.Lecturers
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (lecture == null)
+            if (Lecturer == null)
             {
                 return NotFound();
             }
 
-            return View(lecture);
+            return View(Lecturer);
         }
 
-        // GET: Lectures/Create
+        // GET: Lecturers/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Lectures/Create
+        // POST: Lecturers/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName")] Lecture lecture)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName")] Lecturer Lecturer)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(lecture);
+                _context.Add(Lecturer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(lecture);
+            return View(Lecturer);
         }
 
-        // GET: Lectures/Edit/5
+        // GET: Lecturers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Lectures == null)
+            if (id == null || _context.Lecturers == null)
             {
                 return NotFound();
             }
 
-            var lecture = await _context.Lectures.FindAsync(id);
-            if (lecture == null)
+            var Lecturer = await _context.Lecturers.FindAsync(id);
+            if (Lecturer == null)
             {
                 return NotFound();
             }
-            return View(lecture);
+            return View(Lecturer);
         }
 
-        // POST: Lectures/Edit/5
+        // POST: Lecturers/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName")] Lecture lecture)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName")] Lecturer Lecturer)
         {
-            if (id != lecture.Id)
+            if (id != Lecturer.Id)
             {
                 return NotFound();
             }
@@ -98,12 +98,12 @@ namespace SchoolManagementApp.MVC.Controllers
             {
                 try
                 {
-                    _context.Update(lecture);
+                    _context.Update(Lecturer);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!LectureExists(lecture.Id))
+                    if (!LecturerExists(Lecturer.Id))
                     {
                         return NotFound();
                     }
@@ -114,49 +114,49 @@ namespace SchoolManagementApp.MVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(lecture);
+            return View(Lecturer);
         }
 
-        // GET: Lectures/Delete/5
+        // GET: Lecturers/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Lectures == null)
+            if (id == null || _context.Lecturers == null)
             {
                 return NotFound();
             }
 
-            var lecture = await _context.Lectures
+            var Lecturer = await _context.Lecturers
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (lecture == null)
+            if (Lecturer == null)
             {
                 return NotFound();
             }
 
-            return View(lecture);
+            return View(Lecturer);
         }
 
-        // POST: Lectures/Delete/5
+        // POST: Lecturers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Lectures == null)
+            if (_context.Lecturers == null)
             {
-                return Problem("Entity set 'SchoolManagementDbContext.Lectures'  is null.");
+                return Problem("Entity set 'SchoolManagementDbContext.Lecturers'  is null.");
             }
-            var lecture = await _context.Lectures.FindAsync(id);
-            if (lecture != null)
+            var Lecturer = await _context.Lecturers.FindAsync(id);
+            if (Lecturer != null)
             {
-                _context.Lectures.Remove(lecture);
+                _context.Lecturers.Remove(Lecturer);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool LectureExists(int id)
+        private bool LecturerExists(int id)
         {
-          return (_context.Lectures?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Lecturers?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
