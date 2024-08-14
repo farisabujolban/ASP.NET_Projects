@@ -27,6 +27,8 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="About">About</a>
                         </li>
+                        @if(User.Identity.IsAuthenticated)
+                        {
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Courses" asp-action="Index">Courses</a>
                         </li>
@@ -37,8 +39,15 @@
                             <a class="nav-link text-light" asp-area="" asp-controller="Students" asp-action="Index">Students</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Classes" asp-action="Index">Class Management</a>
+                        </li>
+                        }
+                        <!--
+                        <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        -->
+                        <partial name="_LoginPartial" />
                     </ul>
                 </div>
             </div>

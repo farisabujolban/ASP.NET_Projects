@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SchoolManagementApp.MVC.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SchoolManagementApp.MVC.Controllers
 {
+    [Authorize]
     public class EnrollmentsController : Controller
     {
         private readonly SchoolManagementDbContext _context;
